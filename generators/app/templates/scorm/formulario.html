@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html lang="es-es" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <title>Cuestionario de Evaluaci&oacute;n Formativa</title>
+    <meta name="author" content="%%AUTHOR%%" />
+	<meta name="target" content="%%TARGET%%" />
+	<meta name="version" content="%%VERSION%%" />
+    <!-- %%COMMENT%% -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script>
+//<![CDATA[
+"use strict";
+
+// Desde dentro de un SCORM no se ejecuta ajaxSuccess...
+function ajaxSuccess () {
+  document.getElementById('exito').innerHTML = this.responseText;
+  document.getElementById('exito').style.visibility = 'visible';
+}
+
+function ejecutar () {
+	var oReq = new XMLHttpRequest();
+	oReq.onload = ajaxSuccess;
+	
+	var oForm = new FormData ();
+	for ( var i = 1; 18 >= i; i++ ) {
+		oForm.append ( 'pregunta'+i, $( '#pregunta'+i ).val() );
+	}
+	oForm.append ( 'comentario', $( '#comentario' ).val() );
+	
+	oReq.open ( 'post', '%%TARGET_URL%%/%%TARGET%%.php', true );
+    oReq.send ( oForm );
+	
+	document.getElementById('exito').style.visibility = 'visible';
+}
+//]]>
+</script>
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+</script>
+<script>
+    $(function() {
+      $( "div[id^='slider']" ).slider({
+        value:10,
+        min: 1,
+        max: 10,
+        step: 1,
+        slide: function( event, ui ) {
+          $( "#" + $(this).attr("rel") ).val( ui.value );
+        }
+      });
+	  for ( var i = 1; 18 >= i; i++ ) {
+		$( "#pregunta"+i ).val( $( "#slider"+i ).slider( "value" ) );
+	  }
+    });
+</script>
+
+  </head>
+  <body>
+  	<h1 class="ui-widget">
+	Cuestionario de Evaluaci&oacute;n Formativa
+	</h1>
+	<p class="ui-widget">
+	Este cuestionario es an&oacute;nimo, por tanto rogamos responda con sinceridad y objetividad. Su opini&oacute;n ser&aacute; de gran utilidad para mejorar la calidad de la formaci&oacute;n impartida en el futuro.
+	</p>
+	<p class="ui-widget">
+	Valore de 1 a 10 su aceptaci&oacute;n de los diversos aspectos<br/>
+	(1 valor m&aacute;s negativo y 10 el m&aacute;s positivo)
+	</p>
+	<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Objetivos y contenido</a></li>
+    <li><a href="#tabs-2">Metodolog&iacute;a</a></li>
+    <li><a href="#tabs-3">Medios materiales y did&aacute;cticos</a></li>
+    <li><a href="#tabs-4">Tutor/a</a></li>
+    <li><a href="#tabs-5">Resumen</a></li>
+  </ul>
+  <form action="%%TARGET_URL%%/%%TARGET%%.php" method="post" enctype="multipart/form-data" onsubmit="document.getElementById('boton_submit').style.display = 'none'; ejecutar(); return false;">
+  <div id="tabs-1">
+    <p> <label for="pregunta1">Los objetivos del curso se han conseguido: </label><input type="text" id="pregunta1" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider1" rel="pregunta1"></div>
+    <p> <label for="pregunta2">Los contenidos son claros y adaptados a las necesidades formativas que se pretenden cubrir: </label><input type="text" id="pregunta2" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider2" rel="pregunta2"></div>
+    <p> <label for="pregunta3">La duraci&oacute;n del curso ha sido la adecuada en relaci&oacute;n a los contenidos: </label><input type="text" id="pregunta3" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider3" rel="pregunta3"></div>	
+  </div>
+  <div id="tabs-2">
+    <h2>Metodología de sesiones presenciales, apoyo tutorial y autoformación</h2>
+    <p>
+	<p> <label for="pregunta4">La metodolog&iacute;a y la planificaci&oacute;n ha resultado v&aacute;lida en funci&oacute;n de los objetivos y contenidos: </label><input type="text" id="pregunta4" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider4" rel="pregunta4"></div>
+<p> <label for="pregunta5">Las sesiones presenciales (en el caso de que se hayan celebrado) han contribuido a facilitar el proceso de aprendizaje: </label><input type="text" id="pregunta5" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider5" rel="pregunta5"></div>
+<p> <label for="pregunta6">El seguimiento del curso le ha supuesto un mayor esfuerzo personal comparado con un curso presencial o a distancia tradicional: </label><input type="text" id="pregunta6" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider6" rel="pregunta6"></div>
+<p> <label for="pregunta7">Las actividades y ejercicios pr&aacute;cticos le han permitido comprender mejor los contenidos te&oacute;ricos: </label><input type="text" id="pregunta7" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider7" rel="pregunta7"></div>
+
+	</p>
+  </div>
+  <div id="tabs-3">
+    <p>
+	<p> <label for="pregunta8">Accesibilidad y funcionamiento general de la plataforma tecnol&oacute;gica sobre la que se ha impartido el curso: </label><input type="text" id="pregunta8" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider8" rel="pregunta8"></div>
+<p> <label for="pregunta9">Facilidad y nivel de utilizaci&oacute;n de las herramientas de comunicaci&oacute;n (correo, foro, tabl&oacute;n...) con el tutor/a y el resto de participantes: </label><input type="text" id="pregunta9" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider9" rel="pregunta9"></div>
+<p> <label for="pregunta10">Eficacia de los medios puestos a su disposici&oacute;n para resolver las dudas y problemas t&eacute;cnicos: </label><input type="text" id="pregunta10" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider10" rel="pregunta10"></div>
+<p> <label for="pregunta11">Los recursos did&aacute;cticos adicionales (enlaces a p&aacute;ginas web, demostraciones, v&iacute;deos, glosario...) han sido suficientes: </label><input type="text" id="pregunta11" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider11" rel="pregunta11"></div>
+<p> <label for="pregunta12">Presentaci&oacute;n y organizaci&oacute;n de los contenidos: </label><input type="text" id="pregunta12" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider12" rel="pregunta12"></div>
+<p> <label for="pregunta13">Actividades y casos pr&aacute;cticos: </label><input type="text" id="pregunta13" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider13" rel="pregunta13"></div>
+<p> <label for="pregunta14">Ejercicios de autocorrecci&oacute;n: </label><input type="text" id="pregunta14" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider14" rel="pregunta14"></div>
+</p>
+  </div>
+  <div id="tabs-4">
+  <p>
+  <p> <label for="pregunta15">Capacidad y rapidez de respuesta del tutor/a a las preguntas del alumno/a: </label><input type="text" id="pregunta15" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider15" rel="pregunta15"></div>
+<p> <label for="pregunta16">El tutor/a ha motivado de forma suficiente y ha realizado un seguimiento efectivo del alumno/a: </label><input type="text" id="pregunta16" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider16" rel="pregunta16"></div>
+<p> <label for="pregunta17">La aportaci&oacute;n del tutor/a ha sido importante en el proceso de formaci&oacute;n: </label><input type="text" id="pregunta17" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider17" rel="pregunta17"></div>
+</p>
+  </div>
+  <div id="tabs-5">
+  <p>
+  <p> <label for="pregunta18">Mi valoraci&oacute;n global considerando todos los aspectos: </label><input type="text" id="pregunta18" style="border:0; color:#f6931f; font-weight:bold;" /></p>
+    <div id="slider18" rel="pregunta18"></div>
+	<p><label for="comentario">Comentarios sobre el curso (positivos y/o negativos):</label></p>
+	<textarea id="comentario" rows="5" cols="50" maxlength="1000"></textarea>
+	</p>
+	<p>
+	<input id="boton_submit" type="submit" value="Enviar encuesta" />
+	<p class="ui-widget" id="exito" style="visibility: hidden;">
+		Gracias por realizar la encuesta. Ya puede salir de la actividad.
+	</p>
+	</p>
+  </div>
+  </form>
+</div>
+</body>
+</html>

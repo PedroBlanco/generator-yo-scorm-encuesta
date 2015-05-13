@@ -44,4 +44,10 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ## License
 
-MIT
+MIT - Up to now?
+
+## TODO
+
+* Validate inputs.
+* Store not chosen parameters (author, version, ...).
+* Use tests (Mocha).
