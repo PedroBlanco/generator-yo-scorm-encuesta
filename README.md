@@ -1,27 +1,23 @@
-# generator-yo-scorm-encuesta [![Build Status](https://secure.travis-ci.org/PedroBlanco/generator-yo-scorm-encuesta.png?branch=master)](https://travis-ci.org/PedroBlanco/generator-yo-scorm-encuesta)
+# generator-yo-scorm-encuesta
 
-> [Yeoman](http://yeoman.io) generator
+**Alpha-state experimental project - NOT USABLE/USEFUL**
+
+[Yeoman](http://yeoman.io) generator for anonymous surveys in SCORM format, to be used from a SCORM compliant LMS (e.g. Moodle), storing survey data in a SQL database (MySQL up to now).
+
+See also [scorm-encuesta](https://github.com/PedroBlanco/scorm-encuesta) for a (more) functional SCORM generator written in PHP.
+
+This project tries to develop a SCORM generator written with Yeoman from the SCORM generator [scorm-encuesta](https://github.com/PedroBlanco/scorm-encuesta) project (written in PHP with a simple web interface), so up to now they share design principles (and mistakes).
 
 
 ## Getting Started
 
-### What is Yeoman?
+### Installing Generator (from yeoman documentation)
 
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
+Assuming you have a functional node.js installation, first of all, you need to install [Yeoman](http://yeoman.io):
 
 ```bash
 npm install -g yo
 ```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
 To install generator-yo-scorm-encuesta from npm, run:
 
@@ -32,22 +28,18 @@ npm install -g generator-yo-scorm-encuesta
 Finally, initiate the generator:
 
 ```bash
-yo yo scorm encuesta
+yo yo-scorm-encuesta
 ```
 
-### Getting To Know Yeoman
+### Using the generated SCORM
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
-
-## License
-
-MIT - Up to now?
+**Work in progress**: SCORM packages are not yet generated, but it should be similar to [this](https://github.com/PedroBlanco/scorm-encuesta#instalaci%C3%B3n) and [this](https://github.com/PedroBlanco/scorm-encuesta#configuraci%C3%B3n-de-la-encuesta).
 
 ## TODO
 
-* Validate inputs.
-* Store not chosen parameters (author, version, ...).
-* Use tests (Mocha).
+- [ ] Validate inputs.
+- [ ] Store not chosen parameters (author, version, ...).
+- [ ] Use unit tests (Mocha).
+- [ ] Generate SCORM package.
+- [ ] Generate Apache configuration.
+- [ ] [See also](https://github.com/PedroBlanco/scorm-encuesta#sugerencias-y-posibles-mejoras).
