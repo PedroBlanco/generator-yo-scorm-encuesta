@@ -8,6 +8,11 @@ See also [scorm-encuesta](https://github.com/PedroBlanco/scorm-encuesta) for a (
 
 This project tries to develop a SCORM generator written with Yeoman from the SCORM generator [scorm-encuesta](https://github.com/PedroBlanco/scorm-encuesta) project (written in PHP with a simple web interface), so up to now they share design principles (and mistakes).
 
+The generated surveys contain the same fixed set of questions. This set of questions coincides (up to now, [see this](https://github.com/PedroBlanco/generator-yo-scorm-encuesta#todo)) with the final survey used in those courses that are homologated by the [Instituto Andaluz de Administración Pública (IAAP)](http://www.juntadeandalucia.es/haciendayadministracionpublica/).
+
+**IMPORTANT: This organism (IAAP) is not responsible in any way of this software and is not related with it beyond the fact that the generated surveys contain the same questions as the surveys used in the mentioned homologated courses. Moreover, no warranty of acceptance or utility is claimed by this software in relation to the derived results of this software generated surveys.**
+
+In order to modify the questions, one has to edit the source code, though this is [poised to change](https://github.com/PedroBlanco/generator-yo-scorm-encuesta#todo). Also, the questions are in Spanish.
 
 ## Getting Started
 
@@ -37,9 +42,10 @@ yo yo-scorm-encuesta
 
 ## TODO
 
+- [ ] Separate the questions from the rest of the code to ease their modification.
 - [ ] Validate inputs.
 - [ ] Store not chosen parameters (author, version, ...).
-- [ ] Use unit tests (Mocha).
+- [ ] Use unit tests (Mocha, [Testing generators](http://yeoman.io/authoring/testing.html)).
 - [ ] Generate SCORM package.
 - [ ] Generate Apache configuration.
 - [ ] [See also](https://github.com/PedroBlanco/scorm-encuesta#sugerencias-y-posibles-mejoras).
