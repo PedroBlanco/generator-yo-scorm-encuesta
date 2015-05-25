@@ -113,6 +113,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json')
       );
+      this.fs.copy(
+        this.templatePath('_Gruntfile.js'),
+        this.destinationPath('Gruntfile.js')
+      );
     },
 
     projectfiles: function () {
@@ -126,7 +130,7 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.fs.copyTpl(
         this.templatePath('serverside.php'),
-        this.destinationPath(this.props.denomination+'.php'),
+        this.destinationPath('source/'+this.props.denomination+'.php'),
         {
           TARGET: this.props.denomination,
           URL: this.props.urlReceiver,
@@ -141,7 +145,7 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.fs.copyTpl(
         this.templatePath('create_table.sql'),
-        this.destinationPath('create_table_'+this.props.dbTable+'.sql'),
+        this.destinationPath('source/create_table_'+this.props.dbTable+'.sql'),
         {
           DB_NAME: this.props.dbName,
           DB_TABLE: this.props.dbTable
@@ -149,13 +153,59 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.fs.copyTpl(
         this.templatePath('create_user.sql'),
-        this.destinationPath('create_user_'+this.props.dbUser+'.sql'),
+        this.destinationPath('source/create_user_'+this.props.dbUser+'.sql'),
         {
           DB_HOST: this.props.dbHost,
           DB_USER: this.props.dbUser,
           DB_PASS: this.props.dbPass,
           DB_NAME: this.props.dbName,
           DB_TABLE: this.props.dbTable
+        }
+      );
+      // FIXME/TODO
+      // TODO: Use only the needed replace fields
+      this.fs.copyTpl(
+        this.templatePath('scorm/formulario.html'),
+        this.destinationPath('source/scorm/formulario.html'),
+        {
+          AUTHOR: 'Pedro Blanco Wasmer',
+          VERSION: '0.1',
+          NAME: 'SURVEY-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          ORGANIZATION: 'ORG-ENCUESTA-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          TITLE_ID: 'TIT-ENCUESTA', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          RES_ID: 'RES-ENCUESTA-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          TARGET: this.props.denomination,
+          URL: this.props.urlReceiver,
+          COMMENT: this.props.comment,
+          DB_HOST: this.props.dbHost,
+          DB_USER: this.props.dbUser,
+          DB_PASS: this.props.dbPass,
+          DB_NAME: this.props.dbName,
+          DB_TABLE: this.props.dbTable,
+          BD_PORT: this.props.dbPort
+        }
+      );
+      // FIXME/TODO
+      // TODO: Use only the needed replace fields
+      this.fs.copyTpl(
+        this.templatePath('scorm/imsmanifest.xml'),
+        this.destinationPath('source/scorm/imsmanifest.xml'),
+        {
+          AUTHOR: 'Pedro Blanco Wasmer',
+          VERSION: '0.1',
+          NAME: 'SURVEY-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          ORGANIZATION: 'ORG-ENCUESTA-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          TITLE_ID: 'TIT-ENCUESTA', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          RES_ID: 'RES-ENCUESTA-', /* TODO: Add script_version and uniqid, or similar, ¿the same as the rest? */
+          TARGET: this.props.denomination,
+          URL: this.props.urlReceiver,
+          COMMENT: this.props.comment,
+          DB_HOST: this.props.dbHost,
+          DB_USER: this.props.dbUser,
+          DB_PASS: this.props.dbPass,
+          DB_NAME: this.props.dbName,
+          DB_TABLE: this.props.dbTable,
+          BD_PORT: this.props.dbPort
         }
       );
     }
@@ -166,6 +216,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.log('This is the end...');
+    this.log('Here is supposed to come some information about how to edit the questions and generate the package...');
   }
 });
